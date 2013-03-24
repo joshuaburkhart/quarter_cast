@@ -1,9 +1,9 @@
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.jsoup.nodes.Attributes;
 import java.io.IOException;
-//import attributes
 
 public class Scrape{
     public static void main(String[] args){
@@ -22,11 +22,10 @@ public class Scrape{
         Element start_month_select = doc.getElementById("selstart");
         //System.out.println(start_month);
         Elements start_months = start_month_select.children();
-        System.out.println(start_month_select);
         Element start_month = null;
         for(Element month : start_months){
-            //pull a list of attributes from each option and look for 'selected'
-            if(month.attributes()){
+            Attributes start_opt_attr = month.attributes();
+            if(start_opt_attr.hasKey("selected")){
                 start_month = month;
             }
         }
@@ -35,12 +34,13 @@ public class Scrape{
         Element start_year = doc.getElementById("startyear");
         //System.out.println(start_year);
         
-        Element end_month_select = doc.getElementById("selstart");
+        Element end_month_select = doc.getElementById("selend");
         //System.out.println(end_month);
         Elements end_months = end_month_select.children();
         Element end_month = null;
         for(Element month : end_months){
-            if(month.attr("selected")==""){
+            Attributes end_opt_attr = month.attributes();
+            if(end_opt_attr.hasKey("selected")){
                 end_month = month;
             }
         }
