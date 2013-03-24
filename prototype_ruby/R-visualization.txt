@@ -1,0 +1,63 @@
+#graph future quarter prediction by quarter
+A = read.table("future_quarter_prediction_by_quarter.txt")
+B = read.table("future_quarter_prediction_by_quarter_cont.txt")
+barplot(rbind(A$V2,B$V2),beside=T,names.arg=c("Q1","Q2","Q3","Q4","Pure Data","Q1D=.5"),xlab="Quarter",main="Future Quarter Prediction by Quarter",border="black",ylab="K=10 Fold Cross Validated Prediction Accuracy",col=rainbow(2))
+abline(h=0.5)
+legend("topleft",c("binary movements","continuous movements"),fill=rainbow(2))
+
+#graph future quarter prediction by year
+A = read.table("future_quarter_prediction_by_year.txt")
+B = read.table("future_quarter_prediction_by_year_cont.txt")
+barplot(rbind(A$V2,B$V2),beside=T,names.arg=c("1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","Pure Data","1995D=.5"),xlab="Year",main="Future Quarter Prediction by Year",border="black",ylab="K=10 Fold Cross Validated Prediction Accuracy",col=rainbow(2))
+abline(h=0.5)
+legend("top",c("binary movements","continuous movements"),fill=rainbow(2))
+
+#graph future quarter prediction by symbol
+A = read.table("future_quarter_prediction_by_symbol.txt")
+B = read.table("future_quarter_prediction_by_symbol_cont.txt")
+barplot(rbind(A$V2,B$V2),beside=T,names.arg=c("ACOR","ALKS","AMGN","ARNA","BIIB","BMRN","CBST","CELG","EXEL","GILD","LXRX","MAXY","MYGN","NBIX","VPHM","Pure Data","CELGD=.5"),xlab="Year",main="Future Quarter Prediction by Symbol",border="black",ylab="K=10 Fold Cross Validated Prediction Accuracy",col=rainbow(2))
+abline(h=0.5)
+legend("top",c("binary movements","continuous movements"),fill=rainbow(2))
+
+--
+
+#graph future day prediction by quarter
+A = read.table("future_day_prediction_by_quarter.txt")
+B = read.table("future_day_prediction_by_quarter_cont.txt")
+barplot(rbind(A$V2,B$V2),beside=T,names.arg=c("Q1","Q2","Q3","Q4","Pure Data","Q1D=.5"),xlab="Quarter",main="Future Day Prediction by Quarter",border="black",ylab="K=10 Fold Cross Validated Prediction Accuracy",col=rainbow(2))
+abline(h=0.5)
+legend("topleft",c("binary movements","continuous movements"),fill=rainbow(2))
+
+#graph future day prediction by year
+A = read.table("future_day_prediction_by_year.txt")
+B = read.table("future_day_prediction_by_year_cont.txt")
+barplot(rbind(A$V2,B$V2),beside=T,names.arg=c("1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","Pure Data","1995D=.5"),xlab="Year",main="Future Day Prediction by Year",border="black",ylab="K=10 Fold Cross Validated Prediction Accuracy",col=rainbow(2))
+abline(h=0.5)
+legend("top",c("binary movements","continuous movements"),fill=rainbow(2))
+
+#graph future day prediction by symbol
+A = read.table("future_day_prediction_by_symbol.txt")
+B = read.table("future_day_prediction_by_symbol_cont.txt")
+barplot(rbind(A$V2,B$V2),beside=T,names.arg=c("ACOR","ALKS","AMGN","ARNA","BIIB","BMRN","CBST","CELG","EXEL","GILD","LXRX","MAXY","MYGN","NBIX","VPHM","Pure Data","CELGD=.5"),xlab="Year",main="Future Day Prediction by Symbol",border="black",ylab="K=10 Fold Cross Validated Prediction Accuracy",col=rainbow(2))
+abline(h=0.5)
+legend("top",c("binary movements","continuous movements"),fill=rainbow(2))
+
+--
+
+#graph future quarter prediction
+A = read.table("future_quarter_prediction.txt")
+B = read.table("future_quarter_prediction_cont.txt")
+C = read.table("future_quarter_prediction_weka.txt")
+D = read.table("future_quarter_prediction_cont_weka.txt")
+barplot(rbind(c(A$V2,B$V2),c(C$V2,D$V2)),beside=T,names.arg=c("LR","MP"),ylim=c(0,1),xlab="Classifier",main="Future Quarter Prediction by Classifier",border="black",ylab="K=10 Fold Cross Validated Prediction Accuracy",col=rainbow(2))
+abline(h=0.5)
+legend("topleft",c("binary movements","continuous movements"),fill=rainbow(2))
+
+#graph future day prediction
+A = read.table("future_day_prediction.txt")
+B = read.table("future_day_prediction_cont.txt")
+C = read.table("future_day_prediction_weka.txt")
+D = read.table("future_day_prediction_cont_weka.txt")
+barplot(rbind(c(A$V2,B$V2),c(C$V2,D$V2)),beside=T,names.arg=c("LR","MP"),ylim=c(0,1),xlab="Classifier",main="Future Day Prediction by Classifier",border="black",ylab="K=10 Fold Cross Validated Prediction Accuracy",col=rainbow(2))
+abline(h=0.5)
+legend("topleft",c("binary movements","continuous movements"),fill=rainbow(2))
