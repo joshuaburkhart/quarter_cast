@@ -7,7 +7,11 @@
 //out.close();
 
 import org.jsoup.*;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import java.io.IOException;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
 
 public class TableFetcher{
     public static void main(String[] args){
@@ -22,10 +26,19 @@ public class TableFetcher{
         csvTableURL.data("igore",".csv");
         csvTableURL.data("s","ARMH");
         try{
-            System.out.println(csvTableURL.get().getClass());
-        }catch(IOException io)
-        {
+            Document doc = csvTableURL.get();
+            FileWriter fstream = new FileWriter("ARMH.csv");
+            BufferedWriter out = new BufferedWriter(fstream);
+            String csvText = doc.body().ownText();
+            csvText = csvText.replace("Adj Close","Adj_Close");
+            for(String line : csvText.split(" ")){
+                out.write(line + "\n");
+            }
+            out.close();
+        }catch(IOException io){
             System.out.println("TROUBLE!");
+        }catch(Exception e){
+            System.out.println("REAL TROUBLE!");
         }
     }
 }
