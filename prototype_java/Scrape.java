@@ -7,11 +7,11 @@ import java.io.IOException;
 
 public class Scrape{
     public static void main(String[] args){
-
+        String symbol = args[0];
+        System.out.println(symbol);
         Document doc = null;
-
         try {
-            doc = Jsoup.connect("http://finance.yahoo.com/q/hp?s=ARMH+Historical+Prices").get();
+            doc = Jsoup.connect("http://finance.yahoo.com/q/hp?s="+symbol+"+Historical+Prices").get();
         }catch(IOException io){
             System.out.println("ERROR");
             System.exit(1);
