@@ -40,6 +40,7 @@ lagging_data_line = nil
 
 csv_file = ARGV[0]
 data_filehandl = File.open(csv_file,"r")
+csv_filename = nil
 if(csv_file.match(/([A-Z]+.csv)/))
     csv_filename = $1
     puts "Processing #{csv_filename}..."
@@ -50,7 +51,6 @@ else
 end
 
 while(data_line = data_filehandl.gets)
-    puts "Processing dataline: #{data_line}"
     if(data_line.match(/^[0-9]{4}-([0-9]{2})-[0-9]{2},.+,.+,.+,.+,.+,.+$/))
         if(next_month.nil?)
             next_month = $1
@@ -88,7 +88,7 @@ while(data_line = data_filehandl.gets)
             elsif(next_q_mov.nil? && lagging_data_line.match(/^[0-9]{4}-(#{q1_finsh}|#{q2_finsh}|#{q3_finsh}|#{q4_finsh}).+$/))
                 lagging_data_line.match(/^[0-9]{4}-[0-9]{2}-[0-9]{2},.+,.+,.+,.+,.+,(.+)$/)
                 crnt_q_val = Float($1)
-                next_q_mov = crnt_q_val > next_q_val ? DOWN : UP
+                next_q_mov = crnt_q_val > next_q_val ? "#{DOWN}" : "#{UP}"
                 crnt_data_line = next_q_mov
                 next_d_price = crnt_q_val
                 next_q_val = crnt_q_val
@@ -132,7 +132,7 @@ while(data_line = data_filehandl.gets)
                 next_q_mov = nil
             elsif(!next_d_price.nil? && lagging_data_line.match(/^[0-9]{4}-[0-9]{2}-[0-9]{2},.+,.+,.+,.+,.+,(.+)$/))
                 crnt_d_price = Float($1)
-                crnt_d_mov = crnt_d_price > next_d_price ? DOWN : UP
+                crnt_d_mov = crnt_d_price > next_d_price ? "#{DOWN}" : "#{UP}"
                 crnt_data_line << ",#{crnt_d_mov}"
                 next_d_price = crnt_d_price
             end
